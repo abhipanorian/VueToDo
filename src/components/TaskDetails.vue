@@ -1,0 +1,50 @@
+<template>
+  <div class="task-page-container container-fluid">
+    <div class="add-new-item-container">
+      <input class="input input-sm" type="text" placeholder="Enter new item details" />
+      <button @click="onAddNewItem" class="btn primary sm">Add Item</button>
+    </div>
+
+    <div class="task-details-container">
+      <h3>{{taskDetails.title}}</h3>
+      <p class="body-xs">Last Modified @ {{taskDetails.lastModified}}</p>
+
+      <div :key="task.id" v-for="task in taskDetails.items">
+        <label>{{task.text}}</label>
+        <!-- <input type="checkbox" value="task.text" v-model="taskDetails.items" /> -->
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+  data: function() {
+    return {};
+  },
+  methods: {
+    onAddNewItem: function() {}
+  },
+  computed: {
+    taskDetails: function() {
+      return this.$store.getters.getTaskDetails(this.$route.params.id);
+    }
+  }
+};
+</script>
+
+<style scoped>
+.task-page-container {
+  margin-top: 10px;
+}
+.add-new-item-container {
+  display: flex;
+  justify-content: space-between;
+}
+.add-new-item-container input {
+  margin-right: 10px;
+}
+.task-details-container {
+  margin-top: 30px;
+}
+</style>
