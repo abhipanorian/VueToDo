@@ -1,7 +1,12 @@
 <template>
   <div class="task-page-container container-fluid">
     <div class="add-new-item-container">
-      <input class="input input-sm" type="text" placeholder="Enter new item details" />
+      <input
+        class="input input-sm"
+        type="text"
+        placeholder="Enter new task to do"
+        v-model="taskText"
+      />
       <button @click="onAddNewItem" class="btn primary sm">Add Item</button>
     </div>
 
@@ -20,10 +25,21 @@
 <script>
 export default {
   data: function() {
-    return {};
+    return {
+      taskText: ""
+    };
   },
   methods: {
-    onAddNewItem: function() {}
+    onAddNewItem: function() {
+      this.$store.dispatch("addTaskToList", {
+        itemId: this.$route.params.id,
+        task: {
+          id: this.taskDetails.items.length + 1,
+          text: this.taskText,
+          done: false
+        }
+      });
+    }
   },
   computed: {
     taskDetails: function() {
