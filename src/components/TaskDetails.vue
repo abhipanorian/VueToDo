@@ -14,10 +14,10 @@
       <h3>{{taskDetails.title}}</h3>
       <p class="body-xs">Last Modified @ {{taskDetails.lastModified}}</p>
 
-      <div :key="task.id" v-for="task in taskDetails.items">
-        <label>{{task.text}}</label>
+      <ul :key="task.id" v-for="task in taskDetails.items">
+        <li>{{task.text}}</li>
         <!-- <input type="checkbox" value="task.text" v-model="taskDetails.items" /> -->
-      </div>
+      </ul>
     </div>
   </div>
 </template>
